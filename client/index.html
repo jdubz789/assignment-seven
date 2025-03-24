@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Night</title>
     <link rel="stylesheet" href="src/style.css" />
-    <script type="module" src="/src/app.js " defer></script>
+    <script type="module" src="/src/app.js" defer></script>
+    <!-- Fixed the extra space here -->
   </head>
   <body>
     <header>
       <nav class="navBar">
-        <a>Action/Adventure</a>
-        <a>Sci-Fi</a>
+        <a href="#">Action/Adventure</a>
+        <!-- Added href="#" for valid link -->
+        <a href="#">Sci-Fi</a>
         <div>
           <img
             id="logo"
@@ -22,10 +24,28 @@
             height="150"
           />
         </div>
-        <a>Superhero</a>
-
-        <a>Comedy</a>
+        <a href="#">Superhero</a>
+        <!-- Added href="#" for valid link -->
+        <a href="#">Comedy</a>
+        <!-- Added href="#" for valid link -->
       </nav>
     </header>
+
+    <h2>Recommend a Movie</h2>
+
+    <form id="movieForm">
+      <input
+        type="text"
+        id="movieInput"
+        placeholder="What are your suggestions?"
+        required
+      />
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <script src="src/script.js"></script>
+    <!-- Ensure this is correct -->
   </body>
 </html>
