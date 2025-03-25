@@ -37,3 +37,9 @@ app.get("/moviesbygenre", async function (request, response) {
   response.json(moviesByGenre.rows);
 })
 
+
+app.post("/newmovie", async function (request, response) {
+  console.log("req.body is", request.body);
+  await db.query(`INSERT INTO movies (title, genre, year, image) VALUES ($1, $2, $3, $4)`, [request.body.suggestions, request.body.genre, request.body.year, request.body.imageLink]);
+  response.json({ status: "Thank you for your suggestion!" });
+})

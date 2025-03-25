@@ -1,17 +1,3 @@
-document
-  .getElementById("movieForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    let movieName = document.getElementById("suggestions").value;
-    let responseMessage = document.getElementById("responseMessage");
-
-    if (movieName.trim() !== "") {
-      responseMessage.textContent = `Thank you for recommending "${movieName}". Tune in for further developments!`;
-      document.getElementById("movieForm").reset(); // Clear the entire form after submission
-    }
-  });
-
 const allMovies = document.getElementById("allMovies");
 async function fetchMovies() {
   const response = await fetch("http://localhost:8080/allmovies");
@@ -59,3 +45,34 @@ function displayMovies() {
 }
 
 displayMovies();
+
+
+const messageForm = document.querySelector("#movieForm");
+
+messageForm.addEventListener("submit", handleSubmitMessageForm);
+
+
+function handleSubmitMessageForm(event) {
+  event.preventDefault();
+  let movieName = document.getElementById("suggestions").value;
+let responseMessage = document.getElementById("responseMessage");
+
+if (movieName.trim() !== "movieName") {
+ responseMessage.textContent = `Thank you for recommending "${movieName}". Tune in for further developments!`
+}
+     
+
+  const formData = new FormData(messageForm);
+  const formValues = Object.fromEntries(formData);
+
+  fetch("http://localhost:8080/newmovie", {
+    method: "POST", 
+    headers: {
+      "Content-Type": "application/json", 
+    },
+    body: JSON.stringify( formValues ),
+  });
+  messageForm.reset() 
+
+}
+
