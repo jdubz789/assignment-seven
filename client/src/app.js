@@ -20,3 +20,46 @@ async function fetchMovies() {
 }
 fetchMovies();
 
+
+const moviesGenres = [ 
+  "Superhero",
+  "Sci-Fi",
+  "Comedy",
+  "Action",] 
+
+async function getMoviesByGenre (genre) {
+  const response = await fetch(`http://localhost:8080/moviesbygenre?genre=${genre}`);
+  
+  const data= await response.json();
+  return data; 
+
+}
+
+const allMoviesContainer = document.getElementById("allMoviesContainer");
+
+
+function displayMovies () {
+  moviesGenres.forEach(async function (genre) {
+    const movies = await getMoviesByGenre(genre);
+    const genreContainer = document.createElement("section");
+    const individualMovieImg = document.createElement("img");
+    const currentGenreH2 = document.createElement("h2");
+    const shuffleButton = document.createElement("button");
+    shuffleButton.textContent="Shuffle";
+    shuffleButton.addEventListener("click", function () {
+      individualMovieImg.src = movies[Math.floor(Math.random()*movies.length)].image;
+      
+    })
+    genreContainer.appendChild(shuffleButton);
+    genreContainer.className = "genreContainer";
+    currentGenreH2.textContent = genre;
+    genreContainer.appendChild(currentGenreH2);
+
+    individualMovieImg.src = movies[Math.floor(Math.random()*movies.length)].image;
+    genreContainer.appendChild(individualMovieImg);
+    allMoviesContainer.appendChild(genreContainer);
+    })
+
+  }
+
+  displayMovies();

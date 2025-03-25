@@ -37,4 +37,3 @@ app.get("/moviesbygenre", async function (request, response) {
   response.json(moviesByGenre.rows);
 })
 
- 
