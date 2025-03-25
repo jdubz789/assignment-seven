@@ -8,7 +8,7 @@ document
 
     if (movieName.trim() !== "") {
       responseMessage.textContent = `Thank you for recommending "${movieName}". Tune in for further developments!`;
-      document.getElementById("suggestions").value = ""; // Clear input after submission
+      document.getElementById("movieForm").reset(); // Clear the entire form after submission
     }
   });
 
