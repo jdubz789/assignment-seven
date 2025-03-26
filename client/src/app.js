@@ -1,6 +1,6 @@
 const allMovies = document.getElementById("allMovies");
 async function fetchMovies() {
-  const response = await fetch("http://localhost:8080/allmovies");
+  const response = await fetch("https://assignment-seven.onrender.com/allmovies");
   const allMoviesData = await response.json();
 }
 fetchMovies();
@@ -9,7 +9,7 @@ const moviesGenres = ["Superhero", "Sci-Fi", "Comedy", "Action"];
 
 async function getMoviesByGenre(genre) {
   const response = await fetch(
-    `http://localhost:8080/moviesbygenre?genre=${genre}`
+    `https://assignment-seven.onrender.com/moviesbygenre?genre=${genre}`
   );
 
   const data = await response.json();
@@ -96,7 +96,7 @@ if (movieName.trim() !== "movieName") {
   const formData = new FormData(messageForm);
   const formValues = Object.fromEntries(formData);
 
-  fetch("http://localhost:8080/newmovie", {
+  fetch("https://assignment-seven.onrender.com/newmovie", {
     method: "POST", 
     headers: {
       "Content-Type": "application/json", 
