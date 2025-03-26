@@ -21,11 +21,20 @@ const allMoviesContainer = document.getElementById("allMoviesContainer");
 function displayMovies() {
   moviesGenres.forEach(async function (genre) {
     const movies = await getMoviesByGenre(genre);
+
     const genreContainer = document.createElement("section");
+    genreContainer.className = "genreContainer"
+
     const individualMovieImg = document.createElement("img");
+    individualMovieImg.className= "individualMovieImg";
+
     const currentGenreH2 = document.createElement("h2");
+    currentGenreH2.className= "currentGenreH2"
+
     const shuffleButton = document.createElement("button");
     shuffleButton.textContent = "Shuffle";
+    shuffleButton.className= "shuffleButton";
+
     shuffleButton.addEventListener("click", function () {
       individualMovieImg.src =
         movies[Math.floor(Math.random() * movies.length)].image;
@@ -41,11 +50,33 @@ function displayMovies() {
       movies[Math.floor(Math.random() * movies.length)].image;
     genreContainer.appendChild(individualMovieImg);
     allMoviesContainer.appendChild(genreContainer);
+
+    genreContainer.appendChild(currentGenreH2);
+    genreContainer.appendChild(shuffleButton);
+
   });
 }
 
 displayMovies();
 
+document.querySelectorAll(".faq-question").forEach((button) => {
+  button.addEventListener("click", () => {
+    const answer = button.nextElementSibling;
+    const isOpen = button.classList.contains("active");
+
+    
+    document.querySelectorAll(".faq-question").forEach((btn) => {
+      btn.classList.remove("active");
+      btn.nextElementSibling.style.display = "none";
+    });
+
+    
+    if (!isOpen) {
+      button.classList.add("active");
+      answer.style.display = "block";
+    }
+  });
+});
 
 const messageForm = document.querySelector("#movieForm");
 
